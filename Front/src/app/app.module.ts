@@ -12,7 +12,7 @@ import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { IndexComponent } from './index/index.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CursosListComponent } from './cursos-list/cursos-list.component';
-import { AboutComponent } from './about/about.component';
+
 
 
 
@@ -24,8 +24,7 @@ import { AboutComponent } from './about/about.component';
     CursosDetailsComponent,
     FilterPipe,
     IndexComponent,
-    CursosListComponent,
-    AboutComponent
+    CursosListComponent
   ],
   imports: [
     BrowserModule,
