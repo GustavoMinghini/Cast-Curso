@@ -5,5 +5,5 @@ export class CursoDetail {
   dtInicio: Date;
   dtTermino: Date;
   qtdAlunos: number=0;
-  categoriasId: number=1;
+  categoriasId: number=0;
 }

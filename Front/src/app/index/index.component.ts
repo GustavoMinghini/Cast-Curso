@@ -12,4 +12,11 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  chamarModal(){
+
+    let botao = document.getElementById('Modal') as HTMLInputElement;
+    botao?.click();
+
+  }
 }

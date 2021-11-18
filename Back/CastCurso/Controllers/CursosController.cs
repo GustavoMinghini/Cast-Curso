@@ -96,7 +96,7 @@ namespace CastCurso.Controllers
 
             if (curso.DtInicio > curso.DtTermino || curso.DtInicio < DateTime.Now)
             {
-                return BadRequest("");
+                return BadRequest("Nao é possivel criar um curso para data de hoje ou anterior");
             }
 
             _context.Curso.Add(curso);
