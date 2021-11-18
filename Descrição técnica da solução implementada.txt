@@ -1,0 +1,3 @@
+o projeto foi feito em ASP.NET Core Web API versao .NET 5.0
+foi utilizado entity frameworkcore,entity frameworkcore SQL SERVER entity frameworkcore.tools todas na versao 5.0.12
+no front foi utilizado Angular 12 , Bootstrap 4.5.3 e font-awesome/5.15.1
