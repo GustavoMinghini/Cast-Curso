@@ -103,8 +103,6 @@ export class CursosDetailsComponent implements OnInit {
         this.service.formLog.cursoId = this.service.formData.cursoId;
         this.service.formLog.dtUltimaAtt = this.currentDate;
         this.service.formLog.tabelaLogId = 0;
-        const usuario = document.getElementsByName("usuarioResponsavel");
-        console.log( usuario.item.toString());
         this.service.formLog.usuarioResponsavel = this.service.formLog.usuarioResponsavel;
         this.insertLog()
         this.service.refreshList();
