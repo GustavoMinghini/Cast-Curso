@@ -1,0 +1,76 @@
+<button type="button" routerLink="" class="btn btn-primary btn-lg">Voltar</button>
+<div class="container text-center" style="margin-left: 35%; margin-top: 10%;">
+  <div class="row">
+    <form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+      <input type="hidden" name="CursoId" [value]="service.formData.cursoId" />
+      <div class="form-group">
+        <label class="color-label">Nome do Curso</label>
+        <input class="form-control form-control-lg" placeholder="Nome do Curso" name="cursoNome" #cursoNome="ngModel"
+          [(ngModel)]="service.formData.cursoNome" required [class.invalid]="cursoNome.invalid && cursoNome.touched">
+        <span *ngIf="cursoNome.invalid && cursoNome.touched" style="color: white;">Campo obrigatório</span>
+
+
+      </div>
+      <div class="form-group">
+        <label class="color-label">Descrição do Curso</label>
+        <input class="form-control form-control-lg" placeholder="Descrição do curso" name="DescricaoCurso"
+          #DescricaoCurso="ngModel" [(ngModel)]="service.formData.descricaoCurso" required
+          [class.invalid]="DescricaoCurso.invalid && DescricaoCurso.touched">
+        <span *ngIf="DescricaoCurso.invalid && DescricaoCurso.touched" style="color: white;">Campo obrigatório</span>
+
+      </div>
+      <div class="form-group">
+        <label class="color-label">Data de Inicio</label>
+        <input type="date" id="initial" min="{{currentDate | date:'yyyy-MM-dd'}}" class="form-control form-control-lg"
+          placeholder="16 Digit Card Number" name="cardNumber" #DtInicio="ngModel"
+          [(ngModel)]="service.formData.dtInicio" required [class.invalid]="DtInicio.invalid && DtInicio.touched"
+          (ngModelChange)="dataAtual(DtInicio)">
+        <span *ngIf="DtInicio.invalid && DtInicio.touched" style="color: white;">Campo obrigatório</span>
+
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="color-label">Data de Termino</label>
+          <input type="date" min="{{datainitial | date:'yyyy-MM-dd'}}" *ngIf="DtInicio.valid" class="form-control form-control-lg"
+            placeholder="Security Code" name="securityCode" #DtTermino="ngModel"
+            [(ngModel)]="service.formData.dtTermino" [class.invalid]="DtTermino.invalid && DtTermino.touched" required>
+
+
+
+        </div>
+        <div class="form-group col-md-6">
+          <label class="color-label">Quantidade de Alunos</label>
+          <input class="form-control form-control-lg" placeholder="MM/YY" name="expirationDate" #QtdAlunos="ngModel"
+            [(ngModel)]="service.formData.qtdAlunos" [class.invalid]="QtdAlunos.invalid && QtdAlunos.touched">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="color-label">Categorias</label>
+          <select [(ngModel)]="service.formData.categoriasId" style="font-weight: 600;" #categoriaId="ngModel"
+            name="categoriaId" class="form-control text-dark" required>
+            <option *ngFor="let categoria of service.list2" value="{{categoria.categoriasId}}">
+              {{categoria.categoriasNome}}
+            </option>
+          </select>
+          <span *ngIf="categoriaId.invalid && categoriaId.touched" style="color: white;">Campo obrigatório</span>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="color-label">Usuario</label>
+          <select [(ngModel)]="this.service.formLog.usuarioResponsavel" style="font-weight: 600;"
+            #usuarioResponsavel="ngModel" name="usuarioResponsavel" id="responsavel" class="form-control text-dark"
+            required [class.invalid]="usuarioResponsavel.invalid && usuarioResponsavel.touched">
+            <option *ngFor="let users of service.list3" value="{{users.nomeUsuario}}">
+              {{users.nomeUsuario}}
+            </option>
+          </select>
+          <span *ngIf="usuarioResponsavel.invalid && usuarioResponsavel.touched" style="color: white;">Campo
+            obrigatório</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <button [disabled]="form.invalid"  class="btn btn-primary btn-lg btn-block" type="submit">Adicionar</button>
+      </div>
+    </form>
+  </div>
+</div>
