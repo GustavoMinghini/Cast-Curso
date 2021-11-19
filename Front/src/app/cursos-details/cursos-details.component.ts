@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CursoDetail } from '../shared/curso-detail.model';
 import { NgForm } from '@angular/forms';
+import { TabelaLog } from '../shared/tabelalog.model';
 
 
 @Component({
@@ -70,7 +71,7 @@ export class CursosDetailsComponent implements OnInit {
         this.service.formLog.cursoId = response.id;
         this.service.formLog.dtInclusao = this.currentDate;
         this.service.formLog.tabelaLogId = 0;
-        this.insertLog()
+        this.insertLog(form)
         this.service.refreshList();
         this.resetForm(form);
       },
@@ -82,11 +83,12 @@ export class CursosDetailsComponent implements OnInit {
     );
   }
 
-  insertLog() {
+  insertLog(form: NgForm) {
     this.service.postLog().subscribe(
       (response:any) => {
         console.log(response)
         this.toastr.success('Log Criado Com Sucesso')
+        this.resetForm2(form);
       },
       err => { console.log(err);
               var text = JSON.stringify(err.error);
@@ -99,12 +101,13 @@ export class CursosDetailsComponent implements OnInit {
   updateRecord(form: NgForm) {
     this.service.putCursoDetail().subscribe(
       res => {
+
         this.toastr.success('Enviado com Sucesso', 'Atualizado Com Sucesso')
         this.service.formLog.cursoId = this.service.formData.cursoId;
         this.service.formLog.dtUltimaAtt = this.currentDate;
         this.service.formLog.tabelaLogId = 0;
         this.service.formLog.usuarioResponsavel = this.service.formLog.usuarioResponsavel;
-        this.insertLog()
+        this.insertLog(form)
         this.service.refreshList();
         this.resetForm(form);
       },
@@ -116,6 +119,10 @@ export class CursosDetailsComponent implements OnInit {
   resetForm(form: NgForm) {
     form.form.reset();
     this.service.formData = new CursoDetail();
+  }
+  resetForm2(form: NgForm) {
+    form.form.reset();
+    this.service.formLog = new TabelaLog();
   }
 
 
